@@ -1,0 +1,27 @@
+void setup() {
+    frameRate(12); //ideal
+    background(255); //to hide that ugly burst of 200x200 200 value canvas
+    noStroke;
+}
+
+float oldY = 0; //for the smoother look
+void draw() {
+    size(window.innerWidth, window.innerHeight); //fit window
+
+    //toggles "colors"
+    if(window.Processing.data.min%2 == 0) {
+        background(200);
+        fill(55)
+    } else {
+        background(55);
+        fill(200);
+    }
+    
+    y = int(map(window.Processing.data.sec, 0, 59, 0, height))+0.5;   //gets actual value to draw at
+    if(int(y) == 0) {
+        oldY = 0;
+    } else {
+        oldY += (y-oldY)/2; //for a smoother look
+    }
+    rect(0, 0, width, oldY); //draws
+}
