@@ -1,13 +1,17 @@
 <html>
-	
-	<head>		
-		<link id="favicon" rel="icon" type="image/png" href="/icon/pomidori.png"/>
-		<title>Pomidori</title>
+
+	<head>
 		<script src="processing-1.1.0.min.js"></script>
+		<script id="mainscript" src="main.js"></script>
+
+		<link id="favlink" rel="icon" type="image/png" href="" />
+
+		<title>Pomidori</title>
 	</head>
-	
+
 	<body style="margin: 0;">
-		<canvas datasrc="example.pjs" width=100%></canvas>
+		<canvas id="vizcanvas" datasrc="viz.pjs"></canvas>
+		<canvas id="favcanvas" datasrc="fav.pjs" style="display: none;"></canvas>
 	</body>
-	
+
 </html>
