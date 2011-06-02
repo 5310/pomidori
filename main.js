@@ -1,15 +1,27 @@
 window.Processing.data = {}; //the global P.js variable container
 
-//The HTML5 javascript sound (playback) API is simple enough:
-// (kept here for posterity)
-//window.Processing.data.finish = new Audio("audio/smb_world_clear.wav");
-//window.Processing.data.finish.play();
+window.Processing.data.urlvars = getUrlVars(); //reads variables from url
 
-mainloop = setInterval(function(){ //the main loop, am I breaking some sort of etiquette here?
+updateTime()
+updateState()
 
+setValues()
+
+main = setInterval(function(){ //the main loop, am I breaking some sort of etiquette here?
+
+	updateTime();
+
+	//updateState();
+
+	document.getElementById("auxdiv").innerHTML = window.Processing.data.now;
+	document.getElementById("auxdiv").style = "font-family: 'Lekton'; font-weight: bold; font-size: 64px; position: absolute; left: 0%; width: 100%; text-align: center; top: 50%; margin-top: -48px; vertical-align: middle; text-shadow: 0px -1px 1px rgba(0,0,0,.5), 0px 1px 1px rgba(255,255,255,.5); color: #C0F55F;";
+
+}, 1000);
+
+function updateTime() {
 	currentDate = new Date();
 
-	window.Processing.data.now = Date.now();
+	window.Processing.data.now = currentDate.valueOf();
 
 	//window.Processing.data.year = currentDate.getFullYear();
 	//window.Processing.data.month = currentDate.getMonth();
@@ -21,8 +33,50 @@ mainloop = setInterval(function(){ //the main loop, am I breaking some sort of e
 	window.Processing.data.sec = currentDate.getSeconds();
 	window.Processing.data.ms = currentDate.getMilliseconds();
 
-}, 1000);
+	window.Processing.data.elapsed = (window.Processing.data.now - window.Processing.data.starttime)
 
+	if(window.Processing.data.state == 1) {
+		window.Processing.data.counter = (window.Processing.data.elapsed - window.Processing.data.pausedur) / window.Processing.data.workdur
+	} else if(window.Processing.data.state == 2) {
+		window.Processing.data.counter = (window.Processing.data.elapsed - window.Processing.data.pausedur) / window.Processing.data.breakdur
+	} else if(window.Processing.data.state == 3) { //not implemented yet
+		window.Processing.data.pausedur += (window.Processing.data.now - window.Processing.data.pausetime)
+	}
+}
 
+function updateState() {
+	window.Processing.data.state = 1
+	//the state machine			   * means transition is automatic in not manual
+	//	0 = inactive			-> 1
+	//	1 = counting "work"		-> 2*, 3, 0
+	//	2 = counting "break"	-> 1*, 0
+	//	3 = pausing "work"		-> 1, 0
+}
 
+function setValues() {
+	if(window.Processing.data.urlvars.s) {
+		window.Processing.data.starttime = window.Processing.data.urlvars.s;
+	} else {
+		window.Processing.data.starttime = window.Processing.data.now.valueOf();	//flat-time of the moment the clock was started
+	}
+	if(window.Processing.data.urlvars.w) {
+		window.Processing.data.workdur = window.Processing.data.urlvars.w * 60 * 1000;
+	} else {
+		window.Processing.data.workdur = 25 * 60 * 1000;	//work length in ms
+	}
+	if(window.Processing.data.urlvars.b) {
+		window.Processing.data.breakdur = window.Processing.data.urlvars.b * 60 * 1000;
+	} else {
+		window.Processing.data.breakdur = 5 * 60 * 1000;
+	}
+	window.Processing.data.pausetime = 0;	//flat time of moment paused
+	window.Processing.data.pausedur = 0;
+}
 
+function getUrlVars() {
+	var map = {};
+	var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+		map[key] = value;
+	});
+	return map;
+}

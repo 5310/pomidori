@@ -1,28 +1,39 @@
+/* @pjs pauseOnBlur="false"; */
+
 void setup() {
     frameRate(12); //ideal
     background(255); //to hide that ugly burst of 200x200 200 value canvas
     noStroke;
 
+    //loading assets
     startsound = new Audio("audio/smb_pipe.wav");
     breaksound = new Audio("audio/smb_warning.wav");
     finishsound = new Audio("audio/smb_stage_clear.wav");
 
+    textFont(createFont("Lekton",64, true));
 }
 
 float oldY = 0; //for the smoother look
 void draw() {
     resize(); //fit window
 
-    //toggles "colors"
-    if(window.Processing.data.min%2 == 0) {
-        background(200);
-        fill(55);
-    } else {
-        background(55);
-        fill(200);
-    }
+    //if(window.Processing.data.state != 1)
+        //return;
 
-    y = int(map(window.Processing.data.sec, 0, 59, 0, height))+0.5;   //gets actual value to draw at
+    //actual drawing starts here///////////////////////
+
+    //toggles "colors"
+    //if(window.Processing.data.min%2 == 0) {
+    //    background(200);
+    //    fill(55);
+    //} else {
+    //    background(55);
+    //    fill(200);
+    //}
+
+    background(55);
+    fill(200);
+    y = int(window.Processing.data.counter%1*height)+0.5;   //gets actual value to draw at
     if(int(y) == 0) {
         oldY = 0;
     } else {
@@ -30,8 +41,9 @@ void draw() {
     }
     rect(0, 0, width, oldY); //draws
 
-    playSound();
+    //drawString();
 
+    playSound();
 }
 
 void resize() {
@@ -39,10 +51,43 @@ void resize() {
 }
 
 void playSound() {
-    if(window.Processing.data.sec == 0)
+    if (window.Processing.data.urlvars.a == false) {
+        return;
+    }
+
+    if(window.Processing.data.counter <= 0.001)
         startsound.play();
-    if(window.Processing.data.sec == 59-15)
-        breaksound.play();
-    if(window.Processing.data.sec == int(59 - finishsound.duration))
+    if(window.Processing.data.counter >= 0.999)
         finishsound.play();
+}
+
+void drawString() {
+    s = "";
+    if(window.Processing.data.hour) {
+    if(window.Processing.data.hour<10)
+        s += "0";
+    s += window.Processing.data.hour;
+    s += ":"
+    if(window.Processing.data.min<10)
+        s += "0";
+    s += window.Processing.data.min;
+    s += ":";
+    if(window.Processing.data.sec<10)
+        s += "0";
+    s += window.Processing.data.sec;
+    }
+
+    s = window.Processing.data.counter
+
+    textAlign(CENTER);
+    fill(0, 100);
+    text(s, width/2, height/2+2);
+    fill(255, 100);
+    text(s, width/2, height/2-2);
+    fill(#C0F55F);
+    text(s, width/2, height/2);
+}
+
+void drawText() {
+    document.createElement("div")
 }

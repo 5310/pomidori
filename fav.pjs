@@ -1,17 +1,12 @@
 void setup() {
     size(16, 16); //fit window
     frameRate(1);
-    smooth();
+    //smooth();
     noStroke();
 }
 
 void draw() {
-
-    var favlink = document.getElementById('favlink');
-    var favcanvas = document.getElementById('favcanvas');
-
-    //favcanvas.getContext("2d").clearRect(0, 0, 16, 16);
-    background(250);
+    background(55);
 
     fill(55);
     //stroke(55);
@@ -19,9 +14,15 @@ void draw() {
     ellipse(8, 8, 16, 16);
 
     noStroke();
-    fill(200);
-    arc(8, 8, 14, 14, -PI/2, 2*PI*map(window.Processing.data.sec, 0, 59, 0, 1)-PI/2);
+    fill(#C0F55F);
+    arc(8, 8, 14, 14, -PI/2, 2*PI*(window.Processing.data.counter%1)-PI/2);
 
+    setCanvasAsFavicon();
+}
+
+void setCanvasAsFavicon() {
+    var favlink = document.getElementById('favlink');
+    var favcanvas = document.getElementById('favcanvas');
     (icon = favlink.cloneNode(true)).setAttribute('href',favcanvas.toDataURL());
     favlink.parentNode.replaceChild(icon, favlink);
 }
