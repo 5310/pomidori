@@ -13,10 +13,14 @@ void setup() {
 
 void draw() {
     resize();       //fit canvas to window
+
     drawViz();      //the real slim shady
     playSound();    //to play, or not to play (tuple?)
     drawTitle();    //change the html title
     drawAuxdiv();   //do stuff inside the auxiliary div provided, full-on htmlcss action
+
+    if(window.Processing.data.state == 0)
+        return;
 }
 
 void resize() {
@@ -24,18 +28,18 @@ void resize() {
 }
 
 void drawViz() {
-    
-    if(window.Processing.data.state == 0 || window.Processing.data.state == 3)
-        return;
-    
-    if(window.Processing.data.state == 1) {
+
+    if(window.Processing.data.state == 1 || window.Processing.data.state == 0) {
         background(55);
         fill(#b0e64d);
     } else if(window.Processing.data.state == 2) {
         background(#b0e64d);
         fill(55);
     }
-    
+
+    if(window.Processing.data.state == 0)
+        return;
+
     y = int(window.Processing.data.counter%1*height)+0.5;   //gets actual value to draw at
 
     rect(0, 0, width, y); //draws
@@ -43,22 +47,41 @@ void drawViz() {
 
 void loadSound() {
     startsound = new Audio("audio/smb_pipe.wav");
+    startsoundplayed = false;
     breaksound = new Audio("audio/smb_warning.wav");
+    breaksoundplayed = false;
     finishsound = new Audio("audio/smb_stage_clear.wav");
+    finishsoundplayed = false;
 }
 void playSound() {
     if(window.Processing.data.urlvars.a == false)
         return;
-    if(window.Processing.data.counter <= 0+startsound.duration/1000 && window.Processing.data.state == 1)
+
+    if(window.Processing.data.state == 1 && !startsoundplayed) {
         startsound.play();
-    if(window.Processing.data.counter <= window.Processing.data.workdur+breaksound.duration/1000  && window.Processing.data.state == 2 )
+        startsoundplayed = true;
+        breaksoundplayed = false;
+        finishsoundplayed = false;
+    }
+    if(window.Processing.data.state == 2 && !breaksoundplayed) {
         breaksound.play();
-    if(window.Processing.data.elapsed >= window.Processing.data.workdur+window.Processing.data.breakdur-finishsound.duration/1000 && window.Processing.data.state != 1)
+        breaksoundplayed = true;
+        startsoundplayed = false;
+        finishsoundplayed = false;
+    }
+    if(window.Processing.data.state == 0 && !finishsoundplayed) {
         finishsound.play();
+        finishsoundplayed = true;
+        startsoundplayed = false;
+        breaksoundplayed = false;
+    }
 }
 
 void drawTitle() {
-    document.title = window.Processing.data.prettytext;
+    if(window.Processing.data.state != 0)
+        document.title = window.Processing.data.prettytext;
+    else
+        document.title = "Pomidori";
 }
 
 void setAuxdiv() {
@@ -66,8 +89,10 @@ void setAuxdiv() {
     //Ideally, the style should also be modular, via a css that changes only what's inside the #auxdiv. For now, leave it be.
 }
 void drawAuxdiv() {
-    //window.Processing.data.prettytext = int((1-window.Processing.data.counter) * (window.Processing.data.workdur+window.Processing.data.breakdur) / 1000 / 60)+":"+int((((1-window.Processing.data.counter) * (window.Processing.data.workdur+window.Processing.data.breakdur) / 1000 / 60) - int((1-window.Processing.data.counter) * (window.Processing.data.workdur+window.Processing.data.breakdur) / 1000 / 60))*60);
-    document.getElementById("clockdiv").innerHTML = window.Processing.data.prettytext;
+    if(window.Processing.data.state == 0)
+        document.getElementById("clockdiv").innerHTML = "F5?";
+    else
+        document.getElementById("clockdiv").innerHTML = window.Processing.data.prettytext;
 }
 
 
