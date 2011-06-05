@@ -9,11 +9,7 @@ updateState();
 main = setInterval(function(){ //the main loop, am I breaking some sort of etiquette here?
 
 	updateTime();
-
-	//updateState();
-
-	//document.getElementById("auxdiv").innerHTML = window.Processing.data.now;
-	//document.title.innerHTML = window.Processing.data.counter;
+	updateState();
 
 }, 1000);
 
