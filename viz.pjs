@@ -24,6 +24,10 @@ void resize() {
 }
 
 void drawViz() {
+    
+    if(window.Processing.data.state == 0 || window.Processing.data.state == 3)
+        return;
+    
     if(window.Processing.data.state == 1) {
         background(55);
         fill(#b0e64d);
