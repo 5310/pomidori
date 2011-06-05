@@ -14,7 +14,7 @@ void draw() {
     ellipse(8, 8, 16, 16);
 
     noStroke();
-    fill(#C0F55F);
+    fill(#b0e64d);
     arc(8, 8, 14, 14, -PI/2, 2*PI*(window.Processing.data.counter%1)-PI/2);
 
     setCanvasAsFavicon();

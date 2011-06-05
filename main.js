@@ -1,10 +1,8 @@
 window.Processing.data = {}; //the global P.js variable container
 
-window.Processing.data.urlvars = getUrlVars(); //reads variables from url
-
+getUrlVars(); //reads variables from url
 updateTime()
 updateState()
-
 setValues()
 
 main = setInterval(function(){ //the main loop, am I breaking some sort of etiquette here?
@@ -13,8 +11,8 @@ main = setInterval(function(){ //the main loop, am I breaking some sort of etiqu
 
 	//updateState();
 
-	document.getElementById("auxdiv").innerHTML = window.Processing.data.now;
-	document.getElementById("auxdiv").style = "font-family: 'Lekton'; font-weight: bold; font-size: 64px; position: absolute; left: 0%; width: 100%; text-align: center; top: 50%; margin-top: -48px; vertical-align: middle; text-shadow: 0px -1px 1px rgba(0,0,0,.5), 0px 1px 1px rgba(255,255,255,.5); color: #C0F55F;";
+	//document.getElementById("auxdiv").innerHTML = window.Processing.data.now;
+	//document.title.innerHTML = window.Processing.data.counter;
 
 }, 1000);
 
@@ -27,11 +25,10 @@ function updateTime() {
 	//window.Processing.data.month = currentDate.getMonth();
 	//window.Processing.data.date = currentDate.getDate();
 	//window.Processing.data.day = currentDate.getDay();
-
-	window.Processing.data.hour = currentDate.getHours();
-	window.Processing.data.min = currentDate.getMinutes();
-	window.Processing.data.sec = currentDate.getSeconds();
-	window.Processing.data.ms = currentDate.getMilliseconds();
+	//window.Processing.data.hour = currentDate.getHours();
+	//window.Processing.data.min = currentDate.getMinutes();
+	//window.Processing.data.sec = currentDate.getSeconds();
+	//window.Processing.data.ms = currentDate.getMilliseconds();
 
 	window.Processing.data.elapsed = (window.Processing.data.now - window.Processing.data.starttime)
 
@@ -78,5 +75,5 @@ function getUrlVars() {
 	var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
 		map[key] = value;
 	});
-	return map;
+	window.Processing.data.urlvars = map;
 }

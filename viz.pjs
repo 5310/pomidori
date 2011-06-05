@@ -6,33 +6,27 @@ void setup() {
     noStroke;
 
     //loading assets
-    startsound = new Audio("audio/smb_pipe.wav");
-    breaksound = new Audio("audio/smb_warning.wav");
-    finishsound = new Audio("audio/smb_stage_clear.wav");
-
-    textFont(createFont("Lekton",64, true));
+    loadSound();
+    setAuxdiv();
+    //textFont(createFont("Lekton",64, true));
 }
 
-float oldY = 0; //for the smoother look
 void draw() {
-    resize(); //fit window
+    resize();       //fit canvas to window
+    drawViz();      //the real slim shady
+    playSound();    //to play, or not to play (tuple?)
+    drawTitle();    //change the html title
+    drawAuxdiv();   //do stuff inside the auxiliary div provided, full-on htmlcss action
+}
 
-    //if(window.Processing.data.state != 1)
-        //return;
+void resize() {
+    size(window.innerWidth, window.innerHeight); //fit window
+}
 
-    //actual drawing starts here///////////////////////
-
-    //toggles "colors"
-    //if(window.Processing.data.min%2 == 0) {
-    //    background(200);
-    //    fill(55);
-    //} else {
-    //    background(55);
-    //    fill(200);
-    //}
-
+float oldY = 0;     //for the smoother look
+void drawViz() {
     background(55);
-    fill(200);
+    fill(#b0e64d);
     y = int(window.Processing.data.counter%1*height)+0.5;   //gets actual value to draw at
     if(int(y) == 0) {
         oldY = 0;
@@ -40,54 +34,33 @@ void draw() {
         oldY += (y-oldY)/2; //for a smoother look
     }
     rect(0, 0, width, oldY); //draws
-
-    //drawString();
-
-    playSound();
 }
 
-void resize() {
-    size(window.innerWidth, window.innerHeight); //fit window
+void loadSound() {
+    startsound = new Audio("audio/smb_pipe.wav");
+    breaksound = new Audio("audio/smb_warning.wav");
+    finishsound = new Audio("audio/smb_stage_clear.wav");
 }
-
 void playSound() {
-    if (window.Processing.data.urlvars.a == false) {
+    if(window.Processing.data.urlvars.a == false)
         return;
-    }
 
-    if(window.Processing.data.counter <= 0.001)
+    if(window.Processing.data.counter <= 0+startsound.duration/1000)
         startsound.play();
-    if(window.Processing.data.counter >= 0.999)
+    if(window.Processing.data.counter >= 1-finishsound.duration/1000)
         finishsound.play();
 }
 
-void drawString() {
-    s = "";
-    if(window.Processing.data.hour) {
-    if(window.Processing.data.hour<10)
-        s += "0";
-    s += window.Processing.data.hour;
-    s += ":"
-    if(window.Processing.data.min<10)
-        s += "0";
-    s += window.Processing.data.min;
-    s += ":";
-    if(window.Processing.data.sec<10)
-        s += "0";
-    s += window.Processing.data.sec;
-    }
-
-    s = window.Processing.data.counter
-
-    textAlign(CENTER);
-    fill(0, 100);
-    text(s, width/2, height/2+2);
-    fill(255, 100);
-    text(s, width/2, height/2-2);
-    fill(#C0F55F);
-    text(s, width/2, height/2);
+void drawTitle() {
+    document.title = window.Processing.data.counter;
 }
 
-void drawText() {
-    document.createElement("div")
+void setAuxdiv() {
+    document.getElementById("auxdiv").innerHTML ='<div id="clockdiv" style="position: absolute; left: 0%; width: 100%; top: 50%; margin-top: -10%; font-family: \'Lekton\'; font-weight: bold; font-size: 144px; text-align: center; color: white; text-shadow: 0px 1px 0px #b0e64d, 0px 2px 0px #b0e64d, 0px 3px 0px #b0e64d, 0px 4px 0px #b0e64d, 0px 5px 0px #b0e64d, 0px 6px 0px #b0e64d, 0px 7px 0px #b0e64d, 0px 12px 10px rgba(192, 245, 95, 0.5), 0px 20px 20px rgba(0,0,0,.75);"></div>';
+    //Ideally, the style should also be modular, via a css that changes only what's inside the #auxdiv. For now, leave it be.
 }
+void drawAuxdiv() {
+    document.getElementById("clockdiv").innerHTML = window.Processing.data.now;
+}
+
+
