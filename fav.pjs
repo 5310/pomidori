@@ -2,20 +2,19 @@ void setup() {
     size(16, 16); //fit window
     frameRate(1);
     //smooth();
-    noStroke();
+    //noStroke();
 }
 
 void draw() {
-    background(55);
+    if(window.Processing.data.state == 1) {
+        background(55);
+        fill(#b0e64d);
+    } else if(window.Processing.data.state == 2) {
+        background(#b0e64d);
+        fill(55);
+    }
 
-    fill(55);
-    //stroke(55);
-    //strokeWeight(1);
-    ellipse(8, 8, 16, 16);
-
-    noStroke();
-    fill(#b0e64d);
-    arc(8, 8, 24, 24, -PI/2, 2*PI*(window.Processing.data.counter%1)-PI/2);
+    arc(8, 8, 24, 22, -PI/2, 2*PI*(window.Processing.data.counter%1)-PI/2);
 
     setCanvasAsFavicon();
 }

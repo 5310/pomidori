@@ -24,8 +24,13 @@ void resize() {
 }
 
 void drawViz() {
-    background(55);
-    fill(#b0e64d);
+    if(window.Processing.data.state == 1) {
+        background(55);
+        fill(#b0e64d);
+    } else if(window.Processing.data.state == 2) {
+        background(#b0e64d);
+        fill(55);
+    }
     
     y = int(window.Processing.data.counter%1*height)+0.5;   //gets actual value to draw at
 
