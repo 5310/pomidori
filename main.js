@@ -30,19 +30,31 @@ function updateTime() {
 	//window.Processing.data.sec = currentDate.getSeconds();
 	//window.Processing.data.ms = currentDate.getMilliseconds();
 
-	window.Processing.data.elapsed = (window.Processing.data.now - window.Processing.data.starttime)
+	window.Processing.data.elapsed = (window.Processing.data.now - window.Processing.data.starttime);
 
 	if(window.Processing.data.state == 1) {
-		window.Processing.data.counter = (window.Processing.data.elapsed - window.Processing.data.pausedur) / window.Processing.data.workdur
+		window.Processing.data.counter = (window.Processing.data.elapsed - window.Processing.data.pausedur) / window.Processing.data.workdur;
 	} else if(window.Processing.data.state == 2) {
-		window.Processing.data.counter = (window.Processing.data.elapsed - window.Processing.data.pausedur) / window.Processing.data.breakdur
+		window.Processing.data.counter = (window.Processing.data.elapsed - window.Processing.data.pausedur) / window.Processing.data.breakdur;
 	} else if(window.Processing.data.state == 3) { //not implemented yet
-		window.Processing.data.pausedur += (window.Processing.data.now - window.Processing.data.pausetime)
+		window.Processing.data.pausedur += (window.Processing.data.now - window.Processing.data.pausetime);
 	}
+    
+    d = new Date(window.Processing.data.workdur + window.Processing.data.breakdur - window.Processing.data.elapsed - 1800000);
+    if(window.Processing.data.elapsed != null) {
+        window.Processing.data.prettytext = "";
+        if(d.getMinutes() < 10)
+            window.Processing.data.prettytext += "0";
+        window.Processing.data.prettytext += d.getMinutes();
+        window.Processing.data.prettytext += ":";
+        if(d.getSeconds() < 10)
+            window.Processing.data.prettytext += "0";
+        window.Processing.data.prettytext += d.getSeconds().toString();
+    }
 }
 
 function updateState() {
-	window.Processing.data.state = 1
+	window.Processing.data.state = 1;
 	//the state machine			   * means transition is automatic in not manual
 	//	0 = inactive			-> 1
 	//	1 = counting "work"		-> 2*, 3, 0

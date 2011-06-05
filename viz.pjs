@@ -1,7 +1,7 @@
 /* @pjs pauseOnBlur="false"; */
 
 void setup() {
-    frameRate(12); //ideal
+    frameRate(1); //ideal
     background(255); //to hide that ugly burst of 200x200 200 value canvas
     noStroke;
 
@@ -23,17 +23,13 @@ void resize() {
     size(window.innerWidth, window.innerHeight); //fit window
 }
 
-float oldY = 0;     //for the smoother look
 void drawViz() {
     background(55);
     fill(#b0e64d);
+    
     y = int(window.Processing.data.counter%1*height)+0.5;   //gets actual value to draw at
-    if(int(y) == 0) {
-        oldY = 0;
-    } else {
-        oldY += (y-oldY)/2; //for a smoother look
-    }
-    rect(0, 0, width, oldY); //draws
+
+    rect(0, 0, width, y); //draws
 }
 
 void loadSound() {
@@ -52,15 +48,16 @@ void playSound() {
 }
 
 void drawTitle() {
-    document.title = window.Processing.data.counter;
+    document.title = window.Processing.data.prettytext;
 }
 
 void setAuxdiv() {
-    document.getElementById("auxdiv").innerHTML ='<div id="clockdiv" style="position: absolute; left: 0%; width: 100%; top: 50%; margin-top: -10%; font-family: \'Lekton\'; font-weight: bold; font-size: 144px; text-align: center; color: white; text-shadow: 0px 1px 0px #b0e64d, 0px 2px 0px #b0e64d, 0px 3px 0px #b0e64d, 0px 4px 0px #b0e64d, 0px 5px 0px #b0e64d, 0px 6px 0px #b0e64d, 0px 7px 0px #b0e64d, 0px 12px 10px rgba(192, 245, 95, 0.5), 0px 20px 20px rgba(0,0,0,.75);"></div>';
+    document.getElementById("auxdiv").innerHTML ='<div id="clockdiv" style="position: absolute; left: 0%; width: 100%; top: 0%; top: 50%; height: 0%; overflow: visible; font-family: \'Lekton\'; font-weight: bold; font-size: 240px; text-align: center; height: 0px; line-height: 0px; color: white; text-shadow: 0px 1px 0px #b0e64d, 0px 2px 0px #b0e64d, 0px 3px 0px #b0e64d, 0px 4px 0px #b0e64d, 0px 5px 0px #b0e64d, 0px 6px 0px #b0e64d, 0px 7px 0px #b0e64d, 0px 12px 10px rgba(192, 245, 95, 0.5), 0px 20px 20px rgba(0,0,0,.75);"></div>';
     //Ideally, the style should also be modular, via a css that changes only what's inside the #auxdiv. For now, leave it be.
 }
 void drawAuxdiv() {
-    document.getElementById("clockdiv").innerHTML = window.Processing.data.now;
+    //window.Processing.data.prettytext = int((1-window.Processing.data.counter) * (window.Processing.data.workdur+window.Processing.data.breakdur) / 1000 / 60)+":"+int((((1-window.Processing.data.counter) * (window.Processing.data.workdur+window.Processing.data.breakdur) / 1000 / 60) - int((1-window.Processing.data.counter) * (window.Processing.data.workdur+window.Processing.data.breakdur) / 1000 / 60))*60);
+    document.getElementById("clockdiv").innerHTML = window.Processing.data.prettytext;
 }
 
 
