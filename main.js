@@ -1,9 +1,10 @@
 window.Processing.data = {}; //the global P.js variable container
 
 getUrlVars(); //reads variables from url
-updateTime()
-updateState()
-setValues()
+updateTime();
+setValues();
+updateState();
+
 
 main = setInterval(function(){ //the main loop, am I breaking some sort of etiquette here?
 
@@ -36,7 +37,7 @@ function updateTime() {
 		window.Processing.data.counter = (window.Processing.data.elapsed - window.Processing.data.pausedur) / window.Processing.data.workdur;
 	} else if(window.Processing.data.state == 2) {
 		window.Processing.data.counter = (window.Processing.data.elapsed - window.Processing.data.pausedur) / window.Processing.data.breakdur;
-	} else if(window.Processing.data.state == 3) { //not implemented yet
+	} else if(window.Processing.data.state == 3) {
 		window.Processing.data.pausedur += (window.Processing.data.now - window.Processing.data.pausetime);
 	}
     
@@ -55,6 +56,14 @@ function updateTime() {
 
 function updateState() {
 	window.Processing.data.state = 1;
+    if(window.Processing.data.elapsed > window.Processing.data.workdur)
+        window.Processing.data.state = 1;
+    if(window.Processing.data.elapsed > window.Processing.data.workdur+window.Processing.data.breakdur)
+        window.Processing.data.state = 0;
+     if(window.Processing.data.repeat > 0) {
+        window.Processing.data.state = 1;
+        setValues();
+     }
 	//the state machine			   * means transition is automatic in not manual
 	//	0 = inactive			-> 1
 	//	1 = counting "work"		-> 2*, 3, 0
@@ -63,10 +72,25 @@ function updateState() {
 }
 
 function setValues() {
-	if(window.Processing.data.urlvars.s) {
-		window.Processing.data.starttime = window.Processing.data.urlvars.s;
+    //w = work
+    //b = break
+    //r = repeat
+    //t = time of start in ms
+    //s = skin
+	if(window.Processing.data.urlvars.t) {
+		window.Processing.data.starttime = window.Processing.data.urlvars.t;
 	} else {
 		window.Processing.data.starttime = window.Processing.data.now.valueOf();	//flat-time of the moment the clock was started
+	}
+    if(window.Processing.data.urlvars.s) {
+        window.Processing.data.skin = window.Processing.data.urlvars.s;
+	} else {
+		window.Processing.data.skin = "kimidori";
+	}
+    if(window.Processing.data.urlvars.r) {
+    	window.Processing.data.repeat = window.Processing.data.urlvars.r;
+	} else {
+		window.Processing.data.repeat = 0;
 	}
 	if(window.Processing.data.urlvars.w) {
 		window.Processing.data.workdur = window.Processing.data.urlvars.w * 60 * 1000;
@@ -78,6 +102,7 @@ function setValues() {
 	} else {
 		window.Processing.data.breakdur = 5 * 60 * 1000;
 	}
+    
 	window.Processing.data.pausetime = 0;	//flat time of moment paused
 	window.Processing.data.pausedur = 0;
 }

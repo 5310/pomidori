@@ -15,7 +15,7 @@ void draw() {
 
     noStroke();
     fill(#b0e64d);
-    arc(8, 8, 14, 14, -PI/2, 2*PI*(window.Processing.data.counter%1)-PI/2);
+    arc(8, 8, 24, 24, -PI/2, 2*PI*(window.Processing.data.counter%1)-PI/2);
 
     setCanvasAsFavicon();
 }
