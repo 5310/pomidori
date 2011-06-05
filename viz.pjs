@@ -45,10 +45,11 @@ void loadSound() {
 void playSound() {
     if(window.Processing.data.urlvars.a == false)
         return;
-
-    if(window.Processing.data.counter <= 0+startsound.duration/1000)
+    if(window.Processing.data.counter <= 0+startsound.duration/1000 && window.Processing.data.state == 1)
         startsound.play();
-    if(window.Processing.data.counter >= 1-finishsound.duration/1000)
+    if(window.Processing.data.counter <= window.Processing.data.workdur+breaksound.duration/1000  && window.Processing.data.state == 2 )
+        breaksound.play();
+    if(window.Processing.data.elapsed >= window.Processing.data.workdur+window.Processing.data.breakdur-finishsound.duration/1000 && window.Processing.data.state != 1)
         finishsound.play();
 }
 
