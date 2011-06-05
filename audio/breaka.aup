@@ -1,0 +1,47 @@
+<?xml version="1.0" standalone="no" ?>
+<!DOCTYPE project PUBLIC "-//audacityproject-1.3.0//DTD//EN" "http://audacity.sourceforge.net/xml/audacityproject-1.3.0.dtd" >
+<project xmlns="http://audacity.sourceforge.net/xml/" projname="breaka_data" version="1.3.0" audacityversion="1.3.11-beta" sel0="0.0000000000" sel1="0.0000000000" vpos="64" h="0.0000000000" zoom="1043.5030005286" rate="44100">
+	<tags>
+		<tag name="id3v2" value="1"/>
+	</tags>
+	<wavetrack name="49204__tombola__Fisher_Price20 1" channel="0" linked="1" mute="0" solo="0" height="150" minimized="0" rate="44100" gain="1" pan="0">
+		<waveclip offset="0.00000000">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="32161">
+				<waveblock start="0">
+					<pcmaliasblockfile summaryfile="e00001ab.auf" aliasfile="C:\Documents and Settings\cd7\Desktop\49204__tombola__Fisher_Price20.wav" aliasstart="0" aliaslen="32161" aliaschannel="0" min="-0.95993" max="0.76651" rms="0.03688"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="0"/>
+		</waveclip>
+	</wavetrack>
+	<wavetrack name="49204__tombola__Fisher_Price20" channel="1" linked="0" mute="0" solo="0" height="150" minimized="0" rate="44100" gain="1" pan="0">
+		<waveclip offset="0.00000000">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="32161">
+				<waveblock start="0">
+					<pcmaliasblockfile summaryfile="e0000832.auf" aliasfile="C:\Documents and Settings\cd7\Desktop\49204__tombola__Fisher_Price20.wav" aliasstart="0" aliaslen="32161" aliaschannel="1" min="-0.247192" max="0.218231" rms="0.015448"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="0"/>
+		</waveclip>
+	</wavetrack>
+	<wavetrack name="49204__tombola__Fisher_Price20 1" channel="0" linked="1" mute="0" solo="0" height="150" minimized="0" rate="44100" gain="1" pan="0">
+		<waveclip offset="0.30090953">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="29117">
+				<waveblock start="0">
+					<simpleblockfile filename="e0000391.au" len="29117" min="-0.826746" max="0.511317" rms="0.0262"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="0"/>
+		</waveclip>
+	</wavetrack>
+	<wavetrack name="49204__tombola__Fisher_Price20" channel="1" linked="0" mute="0" solo="0" height="150" minimized="0" rate="44100" gain="1" pan="0">
+		<waveclip offset="0.30090953">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="29117">
+				<waveblock start="0">
+					<simpleblockfile filename="e0000f27.au" len="29117" min="-0.171575" max="0.139917" rms="0.013163"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="0"/>
+		</waveclip>
+	</wavetrack>
+</project>

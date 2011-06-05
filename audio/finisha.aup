@@ -1,0 +1,91 @@
+<?xml version="1.0" standalone="no" ?>
+<!DOCTYPE project PUBLIC "-//audacityproject-1.3.0//DTD//EN" "http://audacity.sourceforge.net/xml/audacityproject-1.3.0.dtd" >
+<project xmlns="http://audacity.sourceforge.net/xml/" projname="finisha_data" version="1.3.0" audacityversion="1.3.11-beta" sel0="0.0000000000" sel1="0.0000000000" vpos="0" h="0.0000000000" zoom="105.6693736113" rate="44100">
+	<tags>
+		<tag name="id3v2" value="1"/>
+	</tags>
+	<wavetrack name="49217__tombola__Fisher_Price32 1" channel="0" linked="1" mute="0" solo="0" height="85" minimized="0" rate="44100" gain="1" pan="0">
+		<waveclip offset="0.00000000">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="49408">
+				<waveblock start="0">
+					<simpleblockfile filename="e0000615.au" len="49408" min="-0.375647" max="0.38341" rms="0.063344"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="0"/>
+		</waveclip>
+	</wavetrack>
+	<wavetrack name="49217__tombola__Fisher_Price32" channel="1" linked="0" mute="0" solo="0" height="85" minimized="0" rate="44100" gain="1" pan="0">
+		<waveclip offset="0.00000000">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="49408">
+				<waveblock start="0">
+					<simpleblockfile filename="e000016c.au" len="49408" min="-0.149314" max="0.145288" rms="0.04135"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="0"/>
+		</waveclip>
+	</wavetrack>
+	<wavetrack name="49212__tombola__Fisher_Price28 1" channel="0" linked="1" mute="0" solo="0" height="89" minimized="0" rate="44100" gain="1" pan="0">
+		<waveclip offset="0.98419501">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="55584">
+				<waveblock start="0">
+					<simpleblockfile filename="e0000963.au" len="55584" min="-0.538557" max="0.510238" rms="0.023339"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="0"/>
+		</waveclip>
+	</wavetrack>
+	<wavetrack name="49212__tombola__Fisher_Price28" channel="1" linked="0" mute="0" solo="0" height="89" minimized="0" rate="44100" gain="1" pan="0">
+		<waveclip offset="0.98419501">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="55584">
+				<waveblock start="0">
+					<simpleblockfile filename="e0000623.au" len="55584" min="-0.177501" max="0.12472" rms="0.013513"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="0"/>
+		</waveclip>
+	</wavetrack>
+	<wavetrack name="49203__tombola__Fisher_Price19 1" channel="0" linked="1" mute="0" solo="0" height="66" minimized="0" rate="44100" gain="1" pan="0">
+		<waveclip offset="1.99680272">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="4383">
+				<waveblock start="0">
+					<simpleblockfile filename="e0000fee.au" len="4383" min="-0.289108" max="0.261164" rms="0.01887"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="1">
+				<controlpoint t="0.099365079365" val="1.000000000000"/>
+			</envelope>
+		</waveclip>
+		<waveclip offset="2.09619048">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="60465">
+				<waveblock start="0">
+					<simpleblockfile filename="e000073b.au" len="60465" min="-0.110015" max="0.105103" rms="0.026853"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="1">
+				<controlpoint t="0.000000000000" val="1.000000000000"/>
+			</envelope>
+		</waveclip>
+	</wavetrack>
+	<wavetrack name="49203__tombola__Fisher_Price19" channel="1" linked="0" mute="0" solo="0" height="66" minimized="0" rate="44100" gain="1" pan="0">
+		<waveclip offset="1.99680272">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="4383">
+				<waveblock start="0">
+					<simpleblockfile filename="e0000af2.au" len="4383" min="-0.097653" max="0.105724" rms="0.011709"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="1">
+				<controlpoint t="0.099365079365" val="1.000000000000"/>
+			</envelope>
+		</waveclip>
+		<waveclip offset="2.09619048">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="60465">
+				<waveblock start="0">
+					<simpleblockfile filename="e00008dd.au" len="60465" min="-0.064422" max="0.064392" rms="0.018108"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="1">
+				<controlpoint t="0.000000000000" val="1.000000000000"/>
+			</envelope>
+		</waveclip>
+	</wavetrack>
+</project>
