@@ -25,20 +25,20 @@ void resize() {
 void drawViz() {
 
     //toggles colors as per state
-    if(window.Processing.data.state == 1 || window.Processing.data.state == 0) {
+    if(gdata.state == 1 || gdata.state == 0) {
         background(55);
         fill(#b0e64d);
-    } else if(window.Processing.data.state == 2) {
+    } else if(gdata.state == 2) {
         background(#b0e64d);
         fill(55);
     }
 
     //does not proceed with the actual drawing if state says so
-    if(window.Processing.data.state == 0)
+    if(gdata.state == 0)
         return;
 
     //see, could you get simpler than that?
-    y = int(window.Processing.data.counter%1*height)+0.5;
+    y = int(gdata.counter%1*height)+0.5;
     rect(0, 0, width, y);
 }
 
@@ -53,22 +53,22 @@ void loadSound() {
 void playSound() {
 
     //when audio is muted via a == false... skip
-    if(window.Processing.data.urlvars.a == false)
+    if(gdata.urlvars.a == false)
         return;
 
-    if(window.Processing.data.state == 1 && !startsoundplayed) {
+    if(gdata.state == 1 && !startsoundplayed) {
         startsound.play();
         startsoundplayed = true;
         breaksoundplayed = false;
         finishsoundplayed = false;
     }
-    if(window.Processing.data.state == 2 && !breaksoundplayed) {
+    if(gdata.state == 2 && !breaksoundplayed) {
         breaksound.play();
         breaksoundplayed = true;
         startsoundplayed = false;
         finishsoundplayed = false;
     }
-    if(window.Processing.data.state == 0 && !finishsoundplayed) {
+    if(gdata.state == 0 && !finishsoundplayed) {
         finishsound.play();
         finishsoundplayed = true;
         startsoundplayed = false;
@@ -77,8 +77,8 @@ void playSound() {
 }
 
 void drawTitle() {
-    if(window.Processing.data.state != 0)
-        document.title = window.Processing.data.prettytext;
+    if(gdata.state != 0)
+        document.title = gdata.prettytext;
     else
         document.title = "Pomidori"; //simply say Pomidori when not ticking
 }
@@ -88,10 +88,10 @@ void setAuxdiv() {
     document.getElementById("auxdiv").innerHTML ='<div id="clockdiv"></div>';
 }
 void drawAuxdiv() {
-    if(window.Processing.data.state == 0)
+    if(gdata.state == 0)
         document.getElementById("clockdiv").innerHTML = "F5?"; //refreshing...
     else
-        document.getElementById("clockdiv").innerHTML = window.Processing.data.prettytext;
+        document.getElementById("clockdiv").innerHTML = gdata.prettytext;
 }
 
 

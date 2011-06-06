@@ -6,16 +6,16 @@ void setup() {
 void draw() {
 
     //toggles the background color between modes
-    if(window.Processing.data.state == 1) {
+    if(gdata.state == 1) {
         background(55);
         fill(#b0e64d);
-    } else if(window.Processing.data.state == 2) {
+    } else if(gdata.state == 2) {
         background(#b0e64d);
         fill(55);
     }
 
     //draws the pie in the sky
-    arc(8, 8, 32, 32, -PI/2, 2*PI*(window.Processing.data.counter%1)-PI/2);
+    arc(8, 8, 32, 32, -PI/2, 2*PI*(gdata.counter%1)-PI/2);
 
     setCanvasAsFavicon();
 }
