@@ -1,34 +1,30 @@
-/* @pjs pauseOnBlur="false"; */
-
 void setup() {
-    frameRate(1); //ideal
-    background(255); //to hide that ugly burst of 200x200 200 value canvas
+    frameRate(1); //no more is needed
+    background(255); //to hide that ugly burst of 200x200 200 value canvas, this blends with the background
     noStroke;
 
     //loading assets
-    loadSound();
-    setAuxdiv();
-    //textFont(createFont("Lekton",64, true));
+    loadSound();    //loads the soudn assets
+    setAuxdiv();    //creates necessary elements inside the auxiliary div
 }
 
 void draw() {
-    resize();       //fit canvas to window
+    resize();       //fit canvas to window upon resize
 
-    drawViz();      //the real slim shady
-    playSound();    //to play, or not to play (tuple?)
-    drawTitle();    //change the html title
-    drawAuxdiv();   //do stuff inside the auxiliary div provided, full-on htmlcss action
+    drawViz();      //the actual visualization, such a long word for a simple progress-bar
+    playSound();    //plays the audio alerts
+    drawTitle();    //changes the page title
+    drawAuxdiv();   //do stuff inside the auxiliary div provided, full-on html+css action
 
-    if(window.Processing.data.state == 0)
-        return;
 }
 
 void resize() {
-    size(window.innerWidth, window.innerHeight); //fit window
+    size(window.innerWidth, window.innerHeight);
 }
 
 void drawViz() {
 
+    //toggles colors as per state
     if(window.Processing.data.state == 1 || window.Processing.data.state == 0) {
         background(55);
         fill(#b0e64d);
@@ -37,23 +33,26 @@ void drawViz() {
         fill(55);
     }
 
+    //does not proceed with the actual drawing if state says so
     if(window.Processing.data.state == 0)
         return;
 
-    y = int(window.Processing.data.counter%1*height)+0.5;   //gets actual value to draw at
-
-    rect(0, 0, width, y); //draws
+    //see, could you get simpler than that?
+    y = int(window.Processing.data.counter%1*height)+0.5;
+    rect(0, 0, width, y);
 }
 
 void loadSound() {
-    startsound = new Audio("starta.ogg"); //19
+    startsound = new Audio("starta.ogg");
     startsoundplayed = false;
-    breaksound = new Audio("breaka.ogg"); //20 20
+    breaksound = new Audio("breaka.ogg");
     breaksoundplayed = false;
-    finishsound = new Audio("finisha.ogg"); //32 28 19
+    finishsound = new Audio("finisha.ogg");
     finishsoundplayed = false;
 }
 void playSound() {
+
+    //when audio is muted via a == false... skip
     if(window.Processing.data.urlvars.a == false)
         return;
 
@@ -81,16 +80,16 @@ void drawTitle() {
     if(window.Processing.data.state != 0)
         document.title = window.Processing.data.prettytext;
     else
-        document.title = "Pomidori";
+        document.title = "Pomidori"; //simply say Pomidori when not ticking
 }
 
 void setAuxdiv() {
+    //some js to covertly create all the html elements as necessary
     document.getElementById("auxdiv").innerHTML ='<div id="clockdiv"></div>';
-    //Ideally, the style should also be modular, via a css that changes only what's inside the #auxdiv. For now, leave it be.
 }
 void drawAuxdiv() {
     if(window.Processing.data.state == 0)
-        document.getElementById("clockdiv").innerHTML = "F5?";
+        document.getElementById("clockdiv").innerHTML = "F5?"; //refreshing...
     else
         document.getElementById("clockdiv").innerHTML = window.Processing.data.prettytext;
 }
