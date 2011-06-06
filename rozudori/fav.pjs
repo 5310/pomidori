@@ -8,9 +8,9 @@ void draw() {
     //toggles the background color between modes
     if(gdata.state == 1) {
         background(55);
-        fill(#b0e64d);
+        fill(#ED4570);
     } else if(gdata.state == 2) {
-        background(#b0e64d);
+        background(#ED4570);
         fill(55);
     }
 

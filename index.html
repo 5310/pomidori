@@ -1,17 +1,18 @@
 <html>
 
 	<head>
-		<script src="processing-1.2.1.min.js"></script>
-		<script id="mainscript" src="main.js"></script>
-		<link rel="stylesheet" href="kimidori/style.css" type="text/css" />
-		<link id="favlink" rel="icon" type="image/png" href="" />
+		<script id="p.js" type="text/javascript" src="processing-1.2.1.min.js"></script>
+		<script id="mainscript" type="text/javascript" src="main.js"></script>
 		<title>Pomidori</title>
+		<link id="favlink" rel="icon" type="image/png" href="" />
+		<link id="stylesheet" rel="stylesheet" href="" type="text/css" />
 	</head>
 
 	<body style="margin: 0; display: table;">
-		<canvas id="vizcanvas" datasrc="kimidori/viz.pjs"></canvas>
-		<canvas id="favcanvas" datasrc="kimidori/fav.pjs" style="display: none;"></canvas>
+		<canvas id="vizcanvas" datasrc=""></canvas>
+		<canvas id="favcanvas" datasrc="" style="display: none;"></canvas>
 		<div id="auxdiv"></div>
+		<script id="loadscript" type="text/javascript">load();</script>
 	</body>
 
 </html>
