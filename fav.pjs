@@ -1,26 +1,29 @@
 void setup() {
-    size(16, 16); //fit window
-    frameRate(1);
-    smooth();
-    noStroke();
+    size(16, 16); //this is an old-school favicon
+    frameRate(1); //on more is needed
 }
 
 void draw() {
 
+    //toggles the background color between modes
+    if(window.Processing.data.state == 1) {
+        background(55);
+        fill(#b0e64d);
+    } else if(window.Processing.data.state == 2) {
+        background(#b0e64d);
+        fill(55);
+    }
+
+    //draws the pie in the sky
+    arc(8, 8, 32, 32, -PI/2, 2*PI*(window.Processing.data.counter%1)-PI/2);
+
+    setCanvasAsFavicon();
+}
+
+void setCanvasAsFavicon() {
+    //this bit of js is so that we can use the canvas element for this sketch as a favicon
     var favlink = document.getElementById('favlink');
     var favcanvas = document.getElementById('favcanvas');
-    //favcanvas.getContext().clearRect(0, 0, 16, 16);
-    background(250);
-    
-    fill(55);
-    //stroke(55);
-    //strokeWeight(1);
-    ellipse(8, 8, 16, 16);
-    
-    noStroke();
-    fill(200);
-    arc(8, 8, 14, 14, -PI/2, 2*PI*map(window.Processing.data.sec, 0, 59, 0, 1)-PI/2);
-    
     (icon = favlink.cloneNode(true)).setAttribute('href',favcanvas.toDataURL());
     favlink.parentNode.replaceChild(icon, favlink);
 }
