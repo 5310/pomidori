@@ -43,11 +43,11 @@ void drawViz() {
 }
 
 void loadSound() {
-    startsound = new Audio("starta.ogg");
+    startsound = new Audio("kimidori/starta.ogg");
     startsoundplayed = false;
-    breaksound = new Audio("breaka.ogg");
+    breaksound = new Audio("kimidori/breaka.ogg");
     breaksoundplayed = false;
-    finishsound = new Audio("finisha.ogg");
+    finishsound = new Audio("kimidori/finisha.ogg");
     finishsoundplayed = false;
 }
 void playSound() {
