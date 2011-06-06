@@ -89,9 +89,9 @@ void setAuxdiv() {
 }
 void drawAuxdiv() {
     if(gdata.state == 0)
-        document.getElementById("clockdiv").innerHTML = "F5?"; //refreshing...
+        document.getElementById("clockdiv").innerHTML = "<a href='"+window.location.href+"'>"+"F5?"+"</a>"; //refreshing...
     else
-        document.getElementById("clockdiv").innerHTML = gdata.prettytext;
+        document.getElementById("clockdiv").innerHTML = "<a href='"+window.location.href+"'>"+gdata.prettytext+"</a>";
 }
 
 

@@ -50,3 +50,8 @@
 #clockdiv::-moz-selection {
     background: #b0e64d;
 }
+
+#clockdiv a {
+    color: inherit;
+    text-decoration: inherit;
+}
