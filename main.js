@@ -6,6 +6,7 @@ setValues();	//sets the defualt values of necessary variables
 updateState();	//updates clock state
 
 
+
 main = setInterval(function(){ //the main loop, am I breaking some sort of etiquette here?
 
 	updateTime();
