@@ -1,6 +1,7 @@
 void setup() {
     size(16, 16); //this is an old-school favicon
     frameRate(1); //on more is needed
+    background(55); //to avoid the ugly flash
 }
 
 void draw() {
@@ -17,13 +18,5 @@ void draw() {
     //draws the pie in the sky
     arc(8, 8, 32, 32, -PI/2, 2*PI*(gdata.counter%1)-PI/2);
 
-    setCanvasAsFavicon();
-}
-
-void setCanvasAsFavicon() {
-    //this bit of js is so that we can use the canvas element for this sketch as a favicon
-    var favlink = document.getElementById('favlink');
-    var favcanvas = document.getElementById('favcanvas');
-    (icon = favlink.cloneNode(true)).setAttribute('href',favcanvas.toDataURL());
-    favlink.parentNode.replaceChild(icon, favlink);
+    setCanvasAsFavicon();   //no matter what the favicon sketch does, it must call this for the icon to update
 }

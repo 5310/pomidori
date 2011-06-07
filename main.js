@@ -12,6 +12,7 @@ main = setInterval(function(){ //the main loop, am I breaking some sort of etiqu
 
     updateTime();
     updateState();
+    //setCanvasAsFavicon();	//decided to let the P.js script choose its own framerate of update
 
 }, 1000);
 
@@ -119,4 +120,12 @@ function setSkin() {
     document.getElementById("stylesheet").setAttribute("href", gdata.skin+"/style.css");
     document.getElementById("favcanvas").setAttribute("datasrc", gdata.skin+"/fav.pjs");
     document.getElementById("vizcanvas").setAttribute("datasrc", gdata.skin+"/viz.pjs");
+}
+
+function setCanvasAsFavicon() {
+    //this bit of js is so that we can use the canvas element for this sketch as a favicon
+    var favlink = document.getElementById('favlink');
+    var favcanvas = document.getElementById('favcanvas');
+    (icon = favlink.cloneNode(true)).setAttribute('href',favcanvas.toDataURL());
+    favlink.parentNode.replaceChild(icon, favlink);
 }
