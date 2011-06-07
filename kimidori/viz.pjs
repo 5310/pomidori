@@ -15,7 +15,6 @@ void draw() {
     playSound();    //plays the audio alerts
     drawTitle();    //changes the page title
     drawAuxdiv();   //do stuff inside the auxiliary div provided, full-on html+css action
-
 }
 
 void resize() {
