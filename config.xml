@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+    <widget xmlns = "http://www.w3.org/ns/widgets"
+        xmlns:gap = "http://phonegap.com/ns/1.0"
+        id = "in.co.baro.pomidori"
+        version = "1.0.1" >
+
+    <name>Pomidori</name>
+
+    <description>
+        A "fancy-smanshy" web-based Pomodoro timer and personal learning exercise.
+    </description>
+
+    <author href="http://5310.github.io" email="support@phonegap.com">
+        Sayantan Chaudhuri
+    </author>
+    
+    <preference name="phonegap-version" value="2.9.0" />
+    <preference name="android-installLocation" value="preferExternal" />
+    
+    <preference name="permissions" value="none"/>
+
+</widget>
