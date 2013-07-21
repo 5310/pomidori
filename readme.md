@@ -2,6 +2,12 @@
 
 A fancy-smanshy web-based Pomodoro timer and personal learning exercise.
 
+### Update
+
+The project is now wrappable with Cordova/Phonegap. Here's a [Phonegap Build...build](https://build.phonegap.com/apps/479394/share).
+
+Nothing else has changed.
+
 ### Why is this?
 
 I love the [Pomodoro](http://en.wikipedia.org/wiki/Pomodoro_technique) “technique” and the ease of [web-based timers](http://ddg.gg/?q=pomodoro+timers).
